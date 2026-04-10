@@ -8,8 +8,7 @@
     <meta charset="UTF-8">
     <meta name="author" content="Your Name">
     <meta name="keywords" content="certificări IT, cursuri online rețelistică, pregătire CCNA, securitate cibernetică">
-    <meta name="description"
-        content="CertPath - Platformă de cursuri pentru certificări în rețelistică și securitate cibernetică">
+    <meta name="description" content="CertPath - Platformă de cursuri pentru certificări în rețelistică și securitate cibernetică">
     <title>CertPath - Cursuri Certificări IT</title>
 
     <!-- Task 1.4: favicon + msapplication-TileColor -->
@@ -21,10 +20,11 @@
     <meta name="apple-mobile-web-app-title" content="CertPath" />
     <link rel="manifest" href="/resurse/ico/site.webmanifest" />
 
+    <link rel="stylesheet" href="resurse/css/general.css">
+
 </head>
 
 <!-- Task 1.5: header, main, footer -->
-
 <body>
 
     <!-- Task 1.8: nav + lista imbricate + h1 -->
@@ -47,45 +47,48 @@
         </nav>
     </header>
 
-    <main id="home">
-        <!-- Task 1.3: keywords in text -->
-        <!-- Task 1.6: section in section + heading levels (zona3 > section#evenimente) -->
-        <div class="zona1" id="despre-platforma">
-            <!-- hgroup, metinler, figure -->
-            <!-- Task 1.7: hgroup -->
-            <hgroup>
-                <h2>Despre platformă</h2>
-                <p>Cursuri simple și clare pentru certificări IT</p>
-            </hgroup>
+   <main id="home">
 
-            <!-- Task 1.12: text tags - abbr, dfn, q -->
-            <p>CertPath este o platformă cu cursuri pentru <b>certificări IT</b>.
-                Aici găsești cursuri de <dfn>rețelistică</dfn> - știința rețelelor de calculatoare -
-                și <b>securitate cibernetică</b>. Avem cursuri pentru
-                <b>pregătire <abbr title="Cisco Certified Network Associate">CCNA</abbr></b>,
-                <abbr title="Certified Ethical Hacker">CEH</abbr> și CompTIA.
-            </p>
+    <!-- Etapa 2 - Layout: zona1 - prezentare (F-pattern) -->
+    <div class="zona1" id="despre-platforma">
 
-            <p><q>Cel mai bun moment să începi este acum.</q></p>
+        <!-- Task 1.7: hgroup -->
+        <hgroup>
+            <h2>Despre platformă</h2>
+            <p>Cursuri simple și clare pentru certificări IT</p>
+        </hgroup>
 
-            <!-- Task 1.11: figure + figcaption + picture-->
-            <figure>
-                <!-- Task 1.13: image link -->
-                <a href="resurse/imagini/hero-mare.jpg">
-                    <picture>
-                        <source media="(max-width: 480px)" srcset="resurse/imagini/hero-mic.jpg">
-                        <source media="(max-width: 768px)" srcset="resurse/imagini/hero-mediu.jpg">
-                        <img src="resurse/imagini/hero-mare.jpg" alt="Platforma de cursuri pentru certificari IT"
-                            title="CertPath - Pregatire CCNA si securitate cibernetica">
-                    </picture>
-                </a>
-                <figcaption>Cursuri structurate pentru certificari in retelistica si securitate cibernetica</figcaption>
-            </figure>
-        </div>
+        <!-- Task 1.12: text tags - abbr, dfn, q -->
+        <p>CertPath este o platformă cu cursuri pentru <b>certificări IT</b>. 
+            Aici găsești cursuri de <dfn>rețelistică</dfn> - știința rețelelor de calculatoare - 
+            și <b>securitate cibernetică</b>. Avem cursuri pentru 
+            <b>pregătire <abbr title="Cisco Certified Network Associate">CCNA</abbr></b>, 
+            <abbr title="Certified Ethical Hacker">CEH</abbr> și CompTIA.</p>
 
-        <div class="zona2">
-            <!-- tablo -->
-            <!-- Task 1.15: table -->
+        <p><q>Cel mai bun moment să începi este acum.</q></p>
+
+        <!-- Task 1.11: figure + figcaption + picture -->
+        <figure>
+            <!-- Task 1.13: image link -->
+            <a href="resurse/imagini/hero-mare.jpg">
+                <picture>
+                    <source media="(max-width: 480px)" srcset="resurse/imagini/hero-mic.jpg">
+                    <source media="(max-width: 768px)" srcset="resurse/imagini/hero-mediu.jpg">
+                    <img src="resurse/imagini/hero-mare.jpg" 
+                        alt="Platforma de cursuri pentru certificari IT"
+                        title="CertPath - Pregatire CCNA si securitate cibernetica">
+                </picture>
+            </a>
+            <figcaption>Cursuri structurate pentru certificari in retelistica si securitate cibernetica</figcaption>
+        </figure>
+
+    </div>
+
+    <!-- Etapa 2 - Layout: zona2 - tabel -->
+    <div class="zona2">
+
+        <!-- Task 1.15: table -->
+        <div class="tabel-container">
             <table>
                 <caption>Cursuri disponibile pe CertPath</caption>
                 <thead>
@@ -135,144 +138,149 @@
             </table>
         </div>
 
+    </div>
 
-        <div class="zona3">
-            <!-- events -->
-            <!-- Task 1.10: events + time + datetime -->
-            <section id="evenimente">
-                <h3>Evenimente</h3>
-                <ol>
-                    <li>
-                        <time datetime="2026-03-15T10:00">15 martie 2026, ora 10:00</time> -
-                        <b>Webinar CCNA Gratuit</b> - Sesiune introductivă despre rețelistică pentru începători.
-                    </li>
-                    <li>
-                        <time datetime="2026-03-22T14:00">22 martie 2026, ora 14:00</time> -
-                        <b>Workshop Securitate Cibernetică</b> - Introducere în ethical hacking și teste de penetrare.
-                    </li>
-                    <li>
-                        <time datetime="2026-04-05T11:00">5 aprilie 2026, ora 11:00</time> -
-                        <b>Simulare Examen CompTIA Security+</b> - Pregătire intensivă pentru certificare.
-                    </li>
-                </ol>
+    <!-- Etapa 2 - Layout: zona3 - evenimente -->
+    <div class="zona3" id="evenimente">
 
-                <!-- Task 1.17: meter -->
-                <p>Locuri disponibile - Webinar CCNA:
-                    <meter value="12" min="0" max="100" low="20" high="80" optimum="90">12/100</meter>
-                </p>
+        <!-- Task 1.10: events + time + datetime -->
+        <h3>Evenimente</h3>
+        <ol>
+            <li>
+                <time datetime="2026-03-15T10:00">15 martie 2026, ora 10:00</time> -
+                <b>Webinar CCNA Gratuit</b> - Sesiune introductivă despre rețelistică pentru începători.
+            </li>
+            <li>
+                <time datetime="2026-03-22T14:00">22 martie 2026, ora 14:00</time> -
+                <b>Workshop Securitate Cibernetică</b> - Introducere în ethical hacking și teste de penetrare.
+            </li>
+            <li>
+                <time datetime="2026-04-05T11:00">5 aprilie 2026, ora 11:00</time> -
+                <b>Simulare Examen CompTIA Security+</b> - Pregătire intensivă pentru certificare.
+            </li>
+        </ol>
 
-                <p>Locuri disponibile - Workshop Securitate:
-                    <meter value="85" min="0" max="100" low="20" high="80" optimum="90">85/100</meter>
-                </p>
+        <!-- Task 1.17: meter -->
+        <p>Locuri disponibile - Webinar CCNA:
+            <meter value="12" min="0" max="100" low="20" high="80" optimum="90">12/100</meter>
+        </p>
+        <p>Locuri disponibile - Workshop Securitate:
+            <meter value="85" min="0" max="100" low="20" high="80" optimum="90">85/100</meter>
+        </p>
 
-            </section>
-        </div>
+    </div>
 
-        <div class="zona4">
-            <p>Lorem ipsum - Anunțuri</p>
-        </div>
+    <!-- Etapa 2 - Layout: zona4 - anunturi (placeholder) -->
+    <div class="zona4">
+        <h3>Anunțuri</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi.</p>
+    </div>
 
-        <div class="zona5">
-            <p>Lorem ipsum - Utilizatori online</p>
-        </div>
+    <!-- Etapa 2 - Layout: zona5 - utilizatori online (placeholder) -->
+    <div class="zona5">
+        <h3>Utilizatori online</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    </div>
 
-        <div class="zona6">
-            <p>Lorem ipsum - Statistici</p>
-        </div>
+    <!-- Etapa 2 - Layout: zona6 - statistici (placeholder) -->
+    <div class="zona6">
+        <h3>Statistici utilizator</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    </div>
 
-        <div class="zona7">
-            <p>Lorem ipsum - Date server</p>
-        </div>
+    <!-- Etapa 2 - Layout: zona7 - date server (placeholder) -->
+    <div class="zona7">
+        <h3>Date server</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    </div>
 
-        <div class="zona8">
-            <!-- blockquote, dl, details, links, iframe, meter -->
-            <!-- Task 1.9: blockquote, dl -->
-            <blockquote>
-                <p>„Investiția în cunoaștere aduce întotdeauna cele mai mari profituri."</p>
-                <cite>Benjamin Franklin</cite>
-            </blockquote>
+    <!-- Etapa 2 - Layout: zona8 - continut divers -->
+    <div class="zona8">
 
-            <dl>
-                <dt>CCNA</dt>
-                <dd>Cisco Certified Network Associate - certificare entry-level în rețelistică</dd>
-                <dt>CEH</dt>
-                <dd>Certified Ethical Hacker - certificare în securitate ofensivă</dd>
-            </dl>
+        <!-- Task 1.9: blockquote, dl -->
+        <blockquote>
+            <p>„Investiția în cunoaștere aduce întotdeauna cele mai mari profituri."</p>
+            <cite>Benjamin Franklin</cite>
+        </blockquote>
 
-            <!-- Task 1.16: details + summary -->
-            <details>
-                <summary>Ce este certificarea <abbr title="Cisco Certified Network Associate">CCNA</abbr>?</summary>
-                <p>CCNA este o certificare entry-level oferită de Cisco pentru rețelistică. Este primul pas pentru o
-                    carieră în networking.</p>
-            </details>
+        <dl>
+            <dt>CCNA</dt>
+            <dd>Cisco Certified Network Associate - certificare entry-level în rețelistică</dd>
+            <dt>CEH</dt>
+            <dd>Certified Ethical Hacker - certificare în securitate ofensivă</dd>
+        </dl>
 
-            <details>
-                <summary>Cât durează pregătirea pentru CompTIA Security+?</summary>
-                <p>În medie, pregătirea durează 2-3 luni cu studiu zilnic de 2 ore.</p>
-            </details>
+        <!-- Task 1.16: details + summary -->
+        <details>
+            <summary>Ce este certificarea <abbr title="Cisco Certified Network Associate">CCNA</abbr>?</summary>
+            <p>CCNA este o certificare entry-level oferită de Cisco pentru rețelistică.</p>
+        </details>
+        <details>
+            <summary>Cât durează pregătirea pentru CompTIA Security+?</summary>
+            <p>În medie, pregătirea durează 2-3 luni cu studiu zilnic de 2 ore.</p>
+        </details>
+        <details>
+            <summary>Cursurile sunt disponibile în limba română?</summary>
+            <p>Da, toate cursurile de pe CertPath sunt disponibile în limba română.</p>
+        </details>
 
-            <details>
-                <summary>Cursurile sunt disponibile în limba română?</summary>
-                <p>Da, toate cursurile de pe CertPath sunt disponibile în limba română.</p>
-            </details>
-
-            <section id="cursuri-recomandate">
-                <h3>Cursuri recomandate</h3>
-                <p>Descoperă cursurile noastre de <b>securitate cibernetică</b> și
-                    <b>cursuri online rețelistică</b>.
-                </p>
-
-                <!-- Task 1.13: links - external, external+id+wbr, download -->
-                <a href="https://www.cisco.com/site/us/en/learn/training-certifications/certifications/index.html"
-                    target="_blank">
-                    Vezi certificările oficiale Cisco
+        <!-- Task 1.13: links - external, external+id+wbr, download -->
+        <section id="cursuri-recomandate">
+            <h3>Cursuri recomandate</h3>
+            <p>Descoperă cursurile noastre de <b>securitate cibernetică</b> și 
+                <b>cursuri online rețelistică</b>.</p>
+            <a href="https://www.cisco.com/site/us/en/learn/training-certifications/certifications/index.html" target="_blank">
+                Vezi certificările oficiale Cisco
+            </a>
+            <p>
+                <a href="https://learningnetwork.cisco.com/s/article/ccna-certification-guide#exam-topics">
+                    https://learningnetwork.cisco.com/s/article/ccna-<wbr>certification-guide#exam-topics
                 </a>
-                <p>
-                    <a href="https://learningnetwork.cisco.com/s/article/ccna-certification-guide#exam-topics">
-                        https://learningnetwork.cisco.com/s/article/ccna-<wbr>certification-guide#exam-topics
-                    </a>
-                </p>
-                <a href="resurse/ghid_ccna.pdf" download="CertPath_Ghid_CCNA.pdf">
-                    Descarcă Ghidul CCNA
-                </a>
-            </section>
+            </p>
+            <a href="resurse/ghid_ccna.pdf" download="CertPath_Ghid_CCNA.pdf">
+                Descarcă Ghidul CCNA
+            </a>
+        </section>
 
-            <!-- Task 1.14: iframe + youtube -->
-            <div>
-                <a href="https://www.youtube.com/embed/0iBRK8GRTrI" target="player">
-                    Course Introduction
-                </a>
-                <a href="https://www.youtube.com/embed/Ww7_qK5JNz4" target="player">
-                    CML Installation
-                </a>
-                <a href="https://www.youtube.com/embed/5XHar2ceJTg" target="player">
-                    Intro to CML
-                </a>
-
+        <!-- Task 1.14: iframe + youtube — Etapa 2: stilizare-taburi -->
+        <div class="container-iframe">
+            <div class="taburi-iframe">
+                <a href="https://www.youtube.com/embed/0iBRK8GRTrI" target="player">Course Introduction</a>
+                <a href="https://www.youtube.com/embed/Ww7_qK5JNz4" target="player">CML Installation</a>
+                <a href="https://www.youtube.com/embed/5XHar2ceJTg" target="player">Intro to CML</a>
             </div>
-            <iframe name="player" src="https://www.youtube.com/embed/0iBRK8GRTrI" width="560" height="315"
-                allowfullscreen>
+            <iframe name="player" 
+                    src="https://www.youtube.com/embed/0iBRK8GRTrI" 
+                    width="560" 
+                    height="315"
+                    allowfullscreen>
             </iframe>
-
         </div>
-    </main>
 
-    <footer>
-        <!-- Task 1.13: link footer -> top -->
-        <a href="#home">Inapoi sus ↑</a>
+    </div>
 
-        <!-- Task 1.18: address -->
-        <address>
-            <p><a href="tel:+40712345678">+40 712 345 678</a></p>
-            <p><a href="mailto:contact@certpath.ro">contact@certpath.ro</a></p>
-            <p><a href="https://maps.google.com/?q=Bucuresti,+Romania">București, Romania</a></p>
-            <p><a href="https://wa.me/40712345678">WhatsApp</a></p>
-        </address>
+</main>
 
-        <!-- Task 1.19: copyright -->
-        <small>&copy; <time datetime="2026">2026</time> CertPath. Toate drepturile rezervate.</small>
-    </footer>
+   <footer>
+    <!-- Etapa 2 - link-top: pozitie fixa, triunghi, paranteze -->
+    <a href="#home" id="link-top" title="Înapoi la începutul paginii">
+        <div id="triunghi"></div>
+    </a>
+
+    <!-- Task 1.13: link footer -> top -->
+    <a href="#home">Înapoi sus ↑</a>
+
+    <!-- Task 1.18: address -->
+    <address>
+        <p><a href="tel:+40712345678">+40 712 345 678</a></p>
+        <p><a href="mailto:contact@certpath.ro">contact@certpath.ro</a></p>
+        <p><a href="https://maps.google.com/?q=Bucuresti,+Romania">București, Romania</a></p>
+        <p><a href="https://wa.me/40712345678">WhatsApp</a></p>
+    </address>
+
+    <!-- Task 1.19: copyright -->
+    <small>&copy; <time datetime="2026">2026</time> CertPath. Toate drepturile rezervate.</small>
+</footer>
 
 </body>
-
 </html>
