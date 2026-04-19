@@ -1,13 +1,73 @@
+/* ============================================
+   Etapa 2 - Task: schema-cromatica
+   Variabile culori si spatiere
+   ============================================ */
 :root {
-    /* schema cromatica */
     --culoare-primara: #1a365d;
     --culoare-secundara: #52719c;
     --culoare-accent: #abbfdb;
     --culoare-alb: #ffffff;
     --culoare-fundal: #f4f7fa;
+
+    /* Etapa 2 - Task: design-rudimentar - spatiere */
+    --margine-pagina: 80px;
+    --gap-grid: 16px;
+    --padding-zona: 16px;
+
+    /* Etapa 2 - Task: layout-responsive - font */
+    --font-size-baza: 16px;
 }
 
-/* ===== LAYOUT - Task layout-responsive ===== */
+/* ============================================
+   Etapa 2 - Task: iconuri-si-font-extern
+   Font extern prin Google API
+   ============================================ */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--culoare-fundal);
+    color: var(--culoare-primara);
+    font-size: var(--font-size-baza);
+    /* Etapa 2 - Task: layout-responsive - tranzitie font */
+    transition: font-size 0.4s ease;
+}
+
+/* ============================================
+   Etapa 2 - Task: design-rudimentar
+   Izolatie vizuala - header, footer, zone grid
+   ============================================ */
+header {
+    background-color: var(--culoare-primara);
+    color: var(--culoare-alb);
+    padding: var(--padding-zona);
+    border-bottom: 3px solid var(--culoare-accent);
+}
+
+header h1 {
+    color: var(--culoare-alb);
+}
+
+header nav a {
+    color: var(--culoare-alb);
+}
+
+footer {
+    background-color: var(--culoare-primara);
+    color: var(--culoare-alb);
+    padding: var(--padding-zona);
+    border-top: 3px solid var(--culoare-accent);
+    margin-top: 24px;
+}
+
+footer a {
+    color: var(--culoare-accent);
+}
+
+/* ============================================
+   Etapa 2 - Task: layout-responsive
+   Grid principal - ecran mare
+   ============================================ */
 main {
     display: grid;
     grid-template-areas:
@@ -18,9 +78,10 @@ main {
         "zona8 zona8 zona8";
     grid-template-columns: 1fr 2fr 1fr;
     grid-template-rows: auto auto auto auto auto;
-    gap: 16px;
-    margin-left: 80px;
-    margin-right: 80px;
+    gap: var(--gap-grid);
+    margin-left: var(--margine-pagina);
+    margin-right: var(--margine-pagina);
+    margin-top: 24px;
 }
 
 .zona1 { grid-area: zona1; }
@@ -31,3 +92,243 @@ main {
 .zona6 { grid-area: zona6; }
 .zona7 { grid-area: zona7; }
 .zona8 { grid-area: zona8; }
+
+/* Etapa 2 - Task: design-rudimentar
+   Izolatie vizuala zone grid */
+.zona1, .zona2, .zona3, .zona4,
+.zona5, .zona6, .zona7, .zona8 {
+    background-color: var(--culoare-alb);
+    border: 1px solid var(--culoare-accent);
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    padding: var(--padding-zona);
+}
+
+/* ============================================
+   Etapa 2 - Task: design-rudimentar
+   Elemente media - latime procentuala
+   ============================================ */
+img, iframe {
+    width: 100%;
+    max-width: 100%;
+    min-width: 200px;
+}
+
+/* ============================================
+   Etapa 2 - Task: stilizare-tabel
+   Caption jos, coloane alternate, border collapsed,
+   colt rotunjit, hover tranzitie, scroll ecran mic
+   ============================================ */
+.tabel-container {
+    overflow-x: auto;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+caption {
+    caption-side: bottom;
+    padding: 8px;
+    color: var(--culoare-secundara);
+    font-style: italic;
+}
+
+thead th {
+    background-color: var(--culoare-primara);
+    color: var(--culoare-alb);
+    padding: 10px;
+    text-align: left;
+}
+
+tbody td {
+    padding: 10px;
+    border-bottom: 1px solid var(--culoare-accent);
+}
+
+/* Coloane alternate */
+tbody td:nth-child(odd) {
+    background-color: var(--culoare-fundal);
+}
+
+tbody td:nth-child(even) {
+    background-color: var(--culoare-alb);
+}
+
+tfoot td {
+    background-color: var(--culoare-accent);
+    padding: 10px;
+    font-weight: bold;
+}
+
+/* Hover rand - tranzitie */
+tbody tr {
+    transition: background-color 0.3s ease;
+}
+
+tbody tr:hover td {
+    background-color: var(--culoare-accent);
+}
+
+tbody tr:hover td:nth-child(2) {
+    background-color: var(--culoare-secundara);
+    color: var(--culoare-alb);
+}
+
+/* ============================================
+   Etapa 2 - Task: stilizare-taburi
+   Butoane iframe, flexbox, hover
+   ============================================ */
+.container-iframe {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.taburi-iframe {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+}
+
+.taburi-iframe a {
+    display: inline-block;
+    width: 140px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    background-color: var(--culoare-secundara);
+    color: var(--culoare-alb);
+    border: 2px solid var(--culoare-primara);
+    border-radius: 6px;
+    text-decoration: none;
+    opacity: 0.75;
+    transition: opacity 0.3s ease;
+}
+
+.taburi-iframe a:hover {
+    opacity: 1;
+}
+
+/* ============================================
+   Etapa 2 - Task: link-top
+   Pozitie fixa, triunghi CSS, paranteze, tooltip
+   ============================================ */
+#link-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    opacity: 0.5;
+    transition: opacity 0.4s ease;
+    /* Paranteze - border stanga si dreapta rotunjite */
+    border-left: 3px solid var(--culoare-primara);
+    border-right: 3px solid var(--culoare-primara);
+    border-top: none;
+    border-bottom: none;
+    border-radius: 50%;
+}
+
+#link-top:hover {
+    opacity: 1;
+}
+
+#link-top:hover #triunghi {
+    border-bottom-color: var(--culoare-primara);
+    transform: translateY(-4px);
+}
+
+/* Triunghi CSS - fara imagini */
+#triunghi {
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 14px solid var(--culoare-secundara);
+    transition: transform 0.4s ease, border-bottom-color 0.4s ease;
+}
+
+/* ============================================
+   Etapa 2 - Task: iconuri-si-font-extern
+   Font Awesome - icon static si animat
+   ============================================ */
+.icon-static {
+    color: var(--culoare-primara);
+    margin-right: 6px;
+}
+
+.icon-animat {
+    color: var(--culoare-secundara);
+    animation: rotire 2s linear infinite;
+}
+
+@keyframes rotire {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* ============================================
+   Etapa 2 - Task: layout-responsive
+   Ecran mediu - tablet
+   ============================================ */
+@media screen and (max-width: 1024px) {
+    :root {
+        --margine-pagina: 40px;
+        --gap-grid: 12px;
+        --font-size-baza: 15px;
+    }
+
+    main {
+        grid-template-areas:
+            "zona1 zona1"
+            "zona5 zona6"
+            "zona7 zona7"
+            "zona3 zona2"
+            "zona4 zona2"
+            "zona8 zona8";
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+/* ============================================
+   Etapa 2 - Task: layout-responsive
+   Ecran mic - mobil, fara coloane
+   ============================================ */
+@media screen and (max-width: 768px) {
+    :root {
+        --margine-pagina: 12px;
+        --gap-grid: 8px;
+        --font-size-baza: 14px;
+    }
+
+    main {
+        grid-template-areas:
+            "zona1"
+            "zona5"
+            "zona6"
+            "zona7"
+            "zona3"
+            "zona4"
+            "zona2"
+            "zona8";
+        grid-template-columns: 1fr;
+    }
+
+    /* Etapa 2 - Task: layout-responsive - animatii dezactivate */
+    * {
+        animation: none !important;
+        transition: none !important;
+    }
+
+    .tabel-container {
+        overflow-x: auto;
+    }
+}
