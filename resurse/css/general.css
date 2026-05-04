@@ -1,7 +1,7 @@
-/* ============================================
+/* 
    Etapa 2 - Task: schema-cromatica
    Variabile culori si spatiere
-   ============================================ */
+ */
 :root {
     --culoare-primara: #1a365d;
     --culoare-secundara: #52719c;
@@ -18,10 +18,10 @@
     --font-size-baza: 16px;
 }
 
-/* ============================================
+/* 
    Etapa 2 - Task: iconuri-si-font-extern
    Font extern prin Google API
-   ============================================ */
+  */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
 body {
@@ -33,10 +33,10 @@ body {
     transition: font-size 0.4s ease;
 }
 
-/* ============================================
+/* 
    Etapa 2 - Task: design-rudimentar
    Izolatie vizuala - header, footer, zone grid
-   ============================================ */
+ */
 header {
     background-color: var(--culoare-primara);
     color: var(--culoare-alb);
@@ -64,10 +64,10 @@ footer a {
     color: var(--culoare-accent);
 }
 
-/* ============================================
+/* 
    Etapa 2 - Task: layout-responsive
    Grid principal - ecran mare
-   ============================================ */
+ */
 main {
     display: grid;
     grid-template-areas:
@@ -104,25 +104,25 @@ main {
     padding: var(--padding-zona);
 }
 
-/* ============================================
+/* 
    Etapa 2 - Task: design-rudimentar
    Elemente media - latime procentuala
-   ============================================ */
+  */
 img, iframe {
     width: 100%;
     max-width: 100%;
     min-width: 200px;
 }
 
-/* ============================================
+/* 
    Etapa 2 - Task: stilizare-tabel
    Caption jos, coloane alternate, border collapsed,
    colt rotunjit, hover tranzitie, scroll ecran mic
-   ============================================ */
+ */
 .tabel-container {
     overflow-x: auto;
     border-radius: 8px;
-    overflow: hidden;
+    overflow-y: hidden;
 }
 
 table {
@@ -178,10 +178,10 @@ tbody tr:hover td:nth-child(2) {
     color: var(--culoare-alb);
 }
 
-/* ============================================
+/* 
    Etapa 2 - Task: stilizare-taburi
    Butoane iframe, flexbox, hover
-   ============================================ */
+ */
 .container-iframe {
     display: flex;
     flex-direction: column;
@@ -213,10 +213,10 @@ tbody tr:hover td:nth-child(2) {
     opacity: 1;
 }
 
-/* ============================================
+/* 
    Etapa 2 - Task: link-top
    Pozitie fixa, triunghi CSS, paranteze, tooltip
-   ============================================ */
+ */
 #link-top {
     position: fixed;
     bottom: 30px;
@@ -255,11 +255,28 @@ tbody tr:hover td:nth-child(2) {
     border-bottom: 14px solid var(--culoare-secundara);
     transition: transform 0.4s ease, border-bottom-color 0.4s ease;
 }
+.tooltip {
+    position: absolute;
+    bottom: 70px;
+    right: 0;
+    background-color: var(--culoare-primara);
+    color: var(--culoare-alb);
+    padding: 6px 10px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
 
-/* ============================================
+#link-top:hover .tooltip {
+    opacity: 1;
+}
+
+/* 
    Etapa 2 - Task: iconuri-si-font-extern
    Font Awesome - icon static si animat
-   ============================================ */
+*/
 .icon-static {
     color: var(--culoare-primara);
     margin-right: 6px;
@@ -275,11 +292,11 @@ tbody tr:hover td:nth-child(2) {
     to { transform: rotate(360deg); }
 }
 
-/* ============================================
+/* 
    Etapa 2 - Task: layout-responsive
    Ecran mediu - tablet
-   ============================================ */
-@media screen and (max-width: 1024px) {
+*/
+@media screen and (min-width: 481px) and (max-width: 1024px) {
     :root {
         --margine-pagina: 40px;
         --gap-grid: 12px;
@@ -298,11 +315,11 @@ tbody tr:hover td:nth-child(2) {
     }
 }
 
-/* ============================================
+/* 
    Etapa 2 - Task: layout-responsive
    Ecran mic - mobil, fara coloane
-   ============================================ */
-@media screen and (max-width: 768px) {
+*/
+@media screen and (max-width: 480px) {
     :root {
         --margine-pagina: 12px;
         --gap-grid: 8px;
