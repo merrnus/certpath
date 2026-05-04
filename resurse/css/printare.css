@@ -1,0 +1,92 @@
+/* Etapa 3 - Task: css-printare */
+
+@media print {
+
+    /* 1. Banner - afisat sus, centrat, border punctat */
+    #banner {
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 10%;
+        width: 80%;
+        text-align: center;
+        border: 2px dotted black;
+        padding: 8px;
+    }
+
+    /* 2. Elementele media ascunse */
+    img, video, iframe, figure, figcaption, #link-top, nav, .hamburger {
+        display: none !important;
+    }
+
+    /* 3. Gridul afisat ca block */
+    main {
+        display: block !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    /* 4. Linkurile ca text normal */
+    a {
+        color: black !important;
+        text-decoration: none !important;
+    }
+
+    /* 5. H1 centrat, meniu ascuns, salt de pagina */
+    header h1 {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        text-decoration: underline;
+        font-size: 2.5em;
+    }
+
+    header nav {
+        display: none !important;
+    }
+
+    header {
+        break-after: page;
+        page-break-after: always;
+    }
+
+    footer {
+        break-before: page;
+        page-break-before: always;
+    }
+
+    /* 6. Watermark - nume, dimensiuni, border dublu, opacitate */
+    body::after {
+        content: 'Atamuradov Muhammet';
+        position: fixed;
+        bottom: 1cm;
+        right: 1cm;
+        width: 100px;
+        height: 2cm;
+        border: 3px double black;
+        opacity: 0.65;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        transform: rotate(-15deg);
+    }
+
+    /* 7. Margini diferite stanga/dreapta */
+    @page {
+        size: A4;
+        margin: 1cm;
+    }
+
+    @page :left {
+        margin-left: 2.5cm;
+        margin-right: 0.5cm;
+    }
+
+    @page :right {
+        margin-left: 0.5cm;
+        margin-right: 2.5cm;
+    }
+}

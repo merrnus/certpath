@@ -48,9 +48,6 @@ header h1 {
     color: var(--culoare-alb);
 }
 
-header nav a {
-    color: var(--culoare-alb);
-}
 
 footer {
     background-color: var(--culoare-primara);
@@ -326,7 +323,19 @@ tbody tr:hover td:nth-child(2) {
         --font-size-baza: 14px;
     }
 
+    body {
+        overflow-x: hidden;
+        width: 100%;
+        margin: 0;
+    }
+
     main {
+        width: auto;
+        margin-left: var(--margine-pagina);
+        margin-right: var(--margine-pagina);
+        box-sizing: border-box;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
         grid-template-areas:
             "zona1"
             "zona5"
@@ -336,16 +345,27 @@ tbody tr:hover td:nth-child(2) {
             "zona4"
             "zona2"
             "zona8";
-        grid-template-columns: 1fr;
     }
 
-    /* Etapa 2 - Task: layout-responsive - animatii dezactivate */
+    .taburi-iframe {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .taburi-iframe a {
+        width: calc(50% - 8px);
+        font-size: 12px;
+    }
+
     * {
+        max-width: 100%;
+        box-sizing: border-box;
         animation: none !important;
         transition: none !important;
     }
 
     .tabel-container {
         overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
     }
 }

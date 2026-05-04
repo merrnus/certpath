@@ -1,0 +1,146 @@
+header nav > ul > li > ul li a, header nav > ul > li > a {
+  display: block;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+header nav {
+  background-color: #1a365d;
+}
+header nav > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+header nav > ul > li {
+  position: relative;
+}
+header nav > ul > li > a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 20px;
+  color: #ffffff;
+  position: relative;
+  overflow: hidden;
+}
+header nav > ul > li > a::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #52719c;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.1);
+  transform: scaleY(0);
+  transition: transform 0.3s ease;
+  z-index: 0;
+}
+header nav > ul > li > a:hover::before {
+  transform: scaleY(1);
+}
+header nav > ul > li > a i, header nav > ul > li > a span {
+  position: relative;
+  z-index: 1;
+}
+header nav > ul > li > ul {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #f4f7fa;
+  min-width: 200px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex-direction: column;
+  transform: scale(0);
+  transform-origin: top left;
+  transition: transform 0.3s ease;
+  z-index: 100;
+}
+header nav > ul > li > ul li a {
+  color: #1a365d;
+  padding: 12px 16px;
+  position: relative;
+}
+header nav > ul > li > ul li a::after {
+  content: "";
+  position: absolute;
+  bottom: 4px;
+  left: 16px;
+  width: 0;
+  height: 4px;
+  background-color: #52719c;
+  border-bottom: 3px solid #1a365d;
+  transition: width 0.3s ease;
+}
+header nav > ul > li > ul li a:hover::after {
+  width: calc(100% - 32px);
+}
+header nav > ul > li:hover > ul {
+  display: flex;
+  transform: scale(1);
+}
+
+.hamburger {
+  display: none;
+}
+
+@media screen and (max-width: 1024px) and (min-width: 481px) {
+  header nav > ul > li > a span {
+    display: none;
+  }
+  header nav > ul > li > a {
+    padding: 16px 12px;
+  }
+}
+@media screen and (max-width: 480px) {
+  .hamburger {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 16px;
+    background: none;
+    border: none;
+  }
+  .hamburger span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: #ffffff;
+    border-radius: 3px;
+  }
+  header nav > ul {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+  }
+  header nav > ul.activ {
+    display: flex;
+  }
+  header nav > ul > li > ul {
+    position: static;
+    transform: none;
+    display: none;
+  }
+  header nav > ul > li > ul.activ {
+    display: flex;
+    flex-direction: column;
+  }
+  header nav > ul > li:first-child a span {
+    display: none;
+  }
+  header nav > ul > li > a {
+    justify-content: flex-start;
+    padding-left: 24px;
+  }
+}
+
+/*# sourceMappingURL=meniu.css.map */

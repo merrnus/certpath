@@ -24,6 +24,10 @@
    <script src="https://kit.fontawesome.com/d4a0209ab2.js" crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="resurse/css/general.css">
+    <link rel="stylesheet" href="resurse/css/meniu.css">
+    <link rel="stylesheet" href="resurse/css/printare.css" media="print">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 </head>
 
@@ -33,7 +37,13 @@
     <!-- Task 1.8: nav + lista imbricate + h1 -->
     <header>
         <h1>CertPath</h1>
-        <nav>
+        <!-- Etapa 3 - Task: variante-meniu - hamburger menu -->
+            <button class="hamburger" onclick="document.querySelector('nav > ul').classList.toggle('activ')">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        <!--<nav>
             <ul>
                 <li><a href="#home">Acasă</a>
                     <ul>
@@ -47,7 +57,52 @@
                 <li><a href="despre-noi.html">Despre noi</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
-        </nav>
+        </nav> -->
+        <nav>
+    <ul>
+        <li>
+            <a href="#home">
+                <i class="fa-solid fa-house"></i>
+                <span>Acasă</span>
+            </a>
+            <ul>
+                <li><a href="#despre-platforma">Despre platformă</a></li>
+                <li><a href="#cursuri-recomandate">Cursuri recomandate</a></li>
+                <li><a href="#evenimente">Evenimente</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="cursuri.html">
+                <i class="fa-solid fa-book"></i>
+                <span>Cursuri</span>
+            </a>
+            <ul>
+                <li><a href="cursuri.html">Toate cursurile</a></li>
+                <li><a href="cursuri.html#retelistica">Rețelistică</a></li>
+                <li><a href="cursuri.html#securitate">Securitate cibernetică</a></li>
+                <li><a href="cursuri.html#sisteme">Sisteme</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="cai-certificare.html">
+                <i class="fa-solid fa-road"></i>
+                <span>Căi de certificare</span>
+            </a>
+        </li>
+        <li>
+            <a href="despre-noi.html">
+                <i class="fa-solid fa-circle-info"></i>
+                <span>Despre noi</span>
+            </a>
+        </li>
+        <li>
+            <a href="contact.html">
+                <i class="fa-solid fa-envelope"></i>
+                <span>Contact</span>
+            </a>
+        </li>
+    </ul>
+</nav>
     </header>
 
    <main id="home">
@@ -271,6 +326,10 @@
 </main>
 
    <footer>
+
+     <!-- Etapa 3 - Task: css-printare - banner -->
+        <p id="banner">Acesta este un proiect școlar!</p>
+
     <!-- Etapa 2 - link-top: pozitie fixa, triunghi, paranteze -->
     <a href="#home" id="link-top">
     <div id="triunghi"></div>
