@@ -1,0 +1,6 @@
+# Task 4.21: Excluderea folderelor generate de aplicație
+node_modules/
+temp/
+logs/
+backup/
+fisiere_uploadate/

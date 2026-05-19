@@ -1,0 +1,41 @@
+<!-- Task 4.4: Fragment reutilizabil - header comun pentru toate paginile -->
+<header>
+    <h1>CertPath</h1>
+    <button class="hamburger" onclick="document.querySelector('nav > ul').classList.toggle('activ')">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+    <nav>
+        <ul>
+            <li>
+                <a href="/"><i class="fa-solid fa-house"></i><span>Acasă</span></a>
+                <ul>
+                    <li><a href="/#despre-platforma">Despre platformă</a></li>
+                    <li><a href="/#cursuri-recomandate">Cursuri recomandate</a></li>
+                    <li><a href="/#evenimente">Evenimente</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="/cursuri"><i class="fa-solid fa-book"></i><span>Cursuri</span></a>
+                <ul>
+                    <li><a href="/cursuri">Toate cursurile</a></li>
+                    <li><a href="/cursuri#retelistica">Rețelistică</a></li>
+                    <li><a href="/cursuri#securitate">Securitate cibernetică</a></li>
+                    <li><a href="/cursuri#sisteme">Sisteme</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="/cai-certificare"><i class="fa-solid fa-road"></i><span>Căi de certificare</span></a>
+            </li>
+            <li>
+                <a href="/despre-noi"><i class="fa-solid fa-circle-info"></i><span>Despre noi</span></a>
+            </li>
+            <li>
+                <a href="/contact"><i class="fa-solid fa-envelope"></i><span>Contact</span></a>
+            </li>
+        </ul>
+    </nav>
+    <!-- Task 4.13: Afișarea IP-ului utilizatorului -->
+    <span class="user-ip">IP: <%= locals.ip || '' %></span>
+</header>

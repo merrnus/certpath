@@ -1,0 +1,250 @@
+<!-- Task 4.4: Pagina principală folosind fragmente EJS -->
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <%- include('../fragmente/head') %>
+</head>
+<body>
+    <%- include('../fragmente/header') %>
+
+    <main id="home">
+         <!-- Etapa 2 - Layout: zona1 - prezentare (F-pattern) -->
+    <div class="zona1" id="despre-platforma">
+
+        <!-- Task 1.7: hgroup -->
+        <hgroup>
+            <h2>
+                <i class="fa-solid fa-shield icon-static"></i>
+                Despre platformă
+            </h2>
+            <p>
+                <i class="fa-solid fa-rotate icon-animat"></i>
+                Cursuri simple și clare pentru certificări IT
+            </p>
+        </hgroup>
+
+        <!-- Task 1.12: text tags - abbr, dfn, q -->
+        <p>CertPath este o platformă cu cursuri pentru <b>certificări IT</b>. 
+            Aici găsești cursuri de <dfn>rețelistică</dfn> - știința rețelelor de calculatoare - 
+            și <b>securitate cibernetică</b>. Avem cursuri pentru 
+            <b>pregătire <abbr title="Cisco Certified Network Associate">CCNA</abbr></b>, 
+            <abbr title="Certified Ethical Hacker">CEH</abbr> și CompTIA.</p>
+
+        <p><q>Cel mai bun moment să începi este acum.</q></p>
+
+        <!-- Task 1.11: figure + figcaption + picture -->
+        <figure>
+            <!-- Task 1.13: image link -->
+            <a href="resurse/imagini/hero-mare.jpg">
+                <picture>
+                    <source media="(max-width: 480px)" srcset="resurse/imagini/hero-mic.jpg">
+                    <source media="(max-width: 768px)" srcset="resurse/imagini/hero-mediu.jpg">
+                    <img src="resurse/imagini/hero-mare.jpg" 
+                        alt="Platforma de cursuri pentru certificari IT"
+                        title="CertPath - Pregatire CCNA si securitate cibernetica">
+                </picture>
+            </a>
+            <figcaption>Cursuri structurate pentru certificari in retelistica si securitate cibernetica</figcaption>
+        </figure>
+
+        <!-- Task video-vtt: Element video cu surse multiple, trackuri și poster -->
+<video 
+    controls 
+    preload="metadata"
+    poster="/resurse/imagini/poster-video.jpg">
+    <source src="/resurse/video/clip.mp4" type="video/mp4">
+    <source src="/resurse/video/clip.webm" type="video/webm">
+    <track 
+        kind="subtitles" 
+        src="/resurse/video/subtitrari-ro.vtt" 
+        srclang="ro" 
+        label="Română" 
+        default>
+    <track 
+        kind="subtitles" 
+        src="/resurse/video/subtitrari-en.vtt" 
+        srclang="en" 
+        label="English">
+</video>
+
+    </div>
+
+    <!-- Etapa 2 - Layout: zona2 - tabel -->
+    <div class="zona2">
+
+        <!-- Task 1.15: table -->
+        <div class="tabel-container">
+            <table>
+                <caption>Cursuri disponibile pe CertPath</caption>
+                <thead>
+                    <tr>
+                        <th>Categorie</th>
+                        <th>Curs</th>
+                        <th>Durata</th>
+                        <th>Preț</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td rowspan="2">Rețelistică</td>
+                        <td>CCNA 200-301</td>
+                        <td>120 ore</td>
+                        <td>299 lei</td>
+                    </tr>
+                    <tr>
+                        <td>CCNP Enterprise</td>
+                        <td>200 ore</td>
+                        <td>499 lei</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="2">Securitate cibernetică</td>
+                        <td>CompTIA Security+</td>
+                        <td>80 ore</td>
+                        <td>249 lei</td>
+                    </tr>
+                    <tr>
+                        <td>CEH</td>
+                        <td>150 ore</td>
+                        <td>399 lei</td>
+                    </tr>
+                    <tr>
+                        <td>Sisteme</td>
+                        <td>Linux pentru administratori</td>
+                        <td>60 ore</td>
+                        <td>199 lei</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="3">Total cursuri disponibile</td>
+                        <td>5 cursuri</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+
+    </div>
+
+    <!-- Etapa 2 - Layout: zona3 - evenimente -->
+    <div class="zona3" id="evenimente">
+
+        <!-- Task 1.10: events + time + datetime -->
+        <h3>Evenimente</h3>
+        <ol>
+            <li>
+                <time datetime="2026-03-15T10:00">15 martie 2026, ora 10:00</time> -
+                <b>Webinar CCNA Gratuit</b> - Sesiune introductivă despre rețelistică pentru începători.
+            </li>
+            <li>
+                <time datetime="2026-03-22T14:00">22 martie 2026, ora 14:00</time> -
+                <b>Workshop Securitate Cibernetică</b> - Introducere în ethical hacking și teste de penetrare.
+            </li>
+            <li>
+                <time datetime="2026-04-05T11:00">5 aprilie 2026, ora 11:00</time> -
+                <b>Simulare Examen CompTIA Security+</b> - Pregătire intensivă pentru certificare.
+            </li>
+        </ol>
+
+        <!-- Task 1.17: meter -->
+        <p>Locuri disponibile - Webinar CCNA:
+            <meter value="12" min="0" max="100" low="20" high="80" optimum="90">12/100</meter>
+        </p>
+        <p>Locuri disponibile - Workshop Securitate:
+            <meter value="85" min="0" max="100" low="20" high="80" optimum="90">85/100</meter>
+        </p>
+
+    </div>
+
+    <!-- Etapa 2 - Layout: zona4 - anunturi (placeholder) -->
+    <div class="zona4">
+        <h3>Anunțuri</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi.</p>
+    </div>
+
+    <!-- Etapa 2 - Layout: zona5 - utilizatori online (placeholder) -->
+    <div class="zona5">
+        <h3>Utilizatori online</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    </div>
+
+    <!-- Etapa 2 - Layout: zona6 - statistici (placeholder) -->
+    <div class="zona6">
+        <h3>Statistici utilizator</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    </div>
+
+    <!-- Etapa 2 - Layout: zona7 - date server (placeholder) -->
+    <div class="zona7">
+        <h3>Date server</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    </div>
+
+    <!-- Etapa 2 - Layout: zona8 - continut divers -->
+    <div class="zona8">
+
+        <!-- Task 1.9: blockquote, dl -->
+        <blockquote>
+            <p>„Investiția în cunoaștere aduce întotdeauna cele mai mari profituri."</p>
+            <cite>Benjamin Franklin</cite>
+        </blockquote>
+
+        <dl>
+            <dt>CCNA</dt>
+            <dd>Cisco Certified Network Associate - certificare entry-level în rețelistică</dd>
+            <dt>CEH</dt>
+            <dd>Certified Ethical Hacker - certificare în securitate ofensivă</dd>
+        </dl>
+
+        <!-- Task 1.16: details + summary -->
+        <details>
+            <summary>Ce este certificarea <abbr title="Cisco Certified Network Associate">CCNA</abbr>?</summary>
+            <p>CCNA este o certificare entry-level oferită de Cisco pentru rețelistică.</p>
+        </details>
+        <details>
+            <summary>Cât durează pregătirea pentru CompTIA Security+?</summary>
+            <p>În medie, pregătirea durează 2-3 luni cu studiu zilnic de 2 ore.</p>
+        </details>
+        <details>
+            <summary>Cursurile sunt disponibile în limba română?</summary>
+            <p>Da, toate cursurile de pe CertPath sunt disponibile în limba română.</p>
+        </details>
+
+        <!-- Task 1.13: links - external, external+id+wbr, download -->
+        <section id="cursuri-recomandate">
+            <h3>Cursuri recomandate</h3>
+            <p>Descoperă cursurile noastre de <b>securitate cibernetică</b> și 
+                <b>cursuri online rețelistică</b>.</p>
+            <a href="https://www.cisco.com/site/us/en/learn/training-certifications/certifications/index.html" target="_blank">
+                Vezi certificările oficiale Cisco
+            </a>
+            <p>
+                <a href="https://learningnetwork.cisco.com/s/article/ccna-certification-guide#exam-topics">
+                    https://learningnetwork.cisco.com/s/article/ccna-<wbr>certification-guide#exam-topics
+                </a>
+            </p>
+            <a href="resurse/ghid_ccna.pdf" download="CertPath_Ghid_CCNA.pdf">
+                Descarcă Ghidul CCNA
+            </a>
+        </section>
+
+        <!-- Task 1.14: iframe + youtube — Etapa 2: stilizare-taburi -->
+        <div class="container-iframe">
+            <div class="taburi-iframe">
+                <a href="https://www.youtube.com/embed/0iBRK8GRTrI" target="player">Course Introduction</a>
+                <a href="https://www.youtube.com/embed/Ww7_qK5JNz4" target="player">CML Installation</a>
+                <a href="https://www.youtube.com/embed/5XHar2ceJTg" target="player">Intro to CML</a>
+            </div>
+            <iframe name="player" 
+                    src="https://www.youtube.com/embed/0iBRK8GRTrI" 
+                    width="560" 
+                    height="315"
+                    allowfullscreen>
+            </iframe>
+        </div>
+
+    </div>
+    </main>
+
+    <%- include('../fragmente/footer') %>
+</body>
+</html>

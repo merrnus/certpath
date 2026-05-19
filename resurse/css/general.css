@@ -16,6 +16,44 @@
 
     /* Etapa 2 - Task: layout-responsive - font */
     --font-size-baza: 16px;
+
+    /* Etapa 4 - Task: stilizare-linkuri: Culoare linkuri vizitate */
+    --culoare-vizitat: #7a9cbf;
+}
+
+a:visited {
+    color: var(--culoare-vizitat);
+}
+
+/* Etapa 4 - Task: stilizare-linkuri: Simbol pentru linkuri externe */
+a[href^="http"]::before {
+    content: "⮳";
+    font-size: 1.5em;
+    margin-right: 4px;
+}
+
+/*Etapa 4 Task stilizare-linkuri: Schimbare culoare simbol la hover*/
+a[href^="http"]:hover::before {
+    color: var(--culoare-accent);
+}
+
+/* Task stilizare-linkuri: Pata de culoare din centru la hover pe linkuri din main */
+main a {
+    background-image: radial-gradient(
+        circle,
+        var(--culoare-accent) 0%,
+        var(--culoare-accent) 40%,
+        transparent 80%,
+        transparent 100%
+    );
+    background-position: center;
+    background-size: 0;
+    background-repeat: no-repeat;
+    transition: background-size 0.4s ease;
+}
+
+main a:hover {
+    background-size: 100%;
 }
 
 /* 
@@ -68,12 +106,12 @@ footer a {
 main {
     display: grid;
     grid-template-areas:
-        "zona1 zona1 zona1"
-        "zona5 zona6 zona7"
-        "zona3 zona2 zona2"
-        "zona4 zona2 zona2"
-        "zona8 zona8 zona8";
-    grid-template-columns: 1fr 2fr 1fr;
+        "zona1 zona1 zona1 zona1"
+        "zona5 zona5 zona6 zona7"
+        "zona3 zona3 zona2 zona2"
+        "zona4 zona4 zona2 zona2"
+        "zona8 zona8 zona8 zona8";
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: auto auto auto auto auto;
     gap: var(--gap-grid);
     margin-left: var(--margine-pagina);
@@ -109,6 +147,22 @@ img, iframe {
     width: 100%;
     max-width: 100%;
     min-width: 200px;
+}
+
+/* Etapa 4 - Task video-vtt: Stilizarea elementului video */
+video {
+    width: 80%;
+    min-width: 200px;
+    max-width: 600px;
+    display: block;
+    margin: 16px auto;
+}
+
+/* Etapa 4 - Task video-vtt: Stilizarea textului VTT */
+video::cue {
+    background-color: white;
+    color: var(--culoare-primara);
+    text-align: center;
 }
 
 /* 
@@ -182,13 +236,14 @@ tbody tr:hover td:nth-child(2) {
 .container-iframe {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 0px;              
 }
 
 .taburi-iframe {
+    order: 1;            
     display: flex;
     flex-direction: row;
-    gap: 8px;
+    gap: 80px;              
 }
 
 .taburi-iframe a {

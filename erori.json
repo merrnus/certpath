@@ -1,0 +1,31 @@
+{
+    "cale_baza": "resurse/imagini/erori",
+    "eroare_default": {
+        "titlu": "Eroare necunoscută",
+        "text": "A apărut o eroare neașteptată. Reveniți la pagina principală.",
+        "imagine": "default.png"
+    },
+    "info_erori": [
+        {
+            "identificator": 400,
+            "status": true,
+            "titlu": "400 - Cerere invalidă",
+            "text": "Nu puteți accesa fișiere .ejs direct.",
+            "imagine": "400.png"
+        },
+        {
+            "identificator": 403,
+            "status": true,
+            "titlu": "403 - Acces interzis",
+            "text": "Nu aveți permisiunea de a accesa acest director.",
+            "imagine": "403.png"
+        },
+        {
+            "identificator": 404,
+            "status": true,
+            "titlu": "404 - Pagina negăsită",
+            "text": "Pagina pe care o căutați nu există.",
+            "imagine": "404.png"
+        }
+    ]
+}

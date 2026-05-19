@@ -1,0 +1,30 @@
+{
+  "name": "certpath",
+  "version": "1.0.0",
+  "description": "Platforma de cursuri pentru certificari IT",
+  "keywords": [
+    "certificari",
+    "IT",
+    "CCNA",
+    "retele"
+  ],
+  "homepage": "https://github.com/merrnus/certpath#readme",
+  "bugs": {
+    "url": "https://github.com/merrnus/certpath/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/merrnus/certpath.git"
+  },
+  "license": "ISC",
+  "author": "Muhammet",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "ejs": "^5.0.2",
+    "express": "^4.22.2"
+  }
+}
