@@ -72,11 +72,13 @@ function afisareEroare(res, identificator, titlu, text, imagine) {
 }
 
 // Task 4.18: Trimiterea favicon-ului la cerere directă
+//favicon route
 app.get('/favicon.ico', (req, res) => {
     res.sendFile(path.join(__dirname, 'resurse', 'ico', 'favicon.ico'));
 });
 
 // Task 4.16: Returnarea erorii 403 la accesarea unui folder din /resurse
+//error folder resurse
 app.use('/resurse', (req, res, next) => {
     if (!path.extname(req.path)) {
         return afisareEroare(res, 403);
@@ -85,16 +87,19 @@ app.use('/resurse', (req, res, next) => {
 });
 
 // Task 4.17: Returnarea erorii 400 la cererea unui fișier .ejs
+//error .ejs
 app.get('/*.ejs', (req, res) => {
     afisareEroare(res, 400);
 });
 
 // Task 4.8: Prima pagină accesibilă prin mai multe căi
+//static
 app.get(['/', '/index', '/home'], (req, res) => {
     res.render('pagini/index', { ip: req.ip });
 });
 
 // Task 4.9: Route general pentru orice pagină - trebuie să fie ultimul
+//general
 app.get('/*', (req, res) => {
     const pagina = req.params[0];
     res.render(`pagini/${pagina}`, { ip: req.ip }, (err, rezultat) => {
@@ -115,3 +120,24 @@ app.get('/*', (req, res) => {
 app.listen(8080, () => {
     console.log('Server pornit pe http://localhost:8080');
 });
+
+/* Node.js → index.js çalıştırır
+index.js → Express kullanır
+Express → EJS kullanır
+EJS → .ejs dosyalarını HTML'e çevirir */
+
+/* App Store = npmjs.com (kütüphaneler burada duruyor)
+App Store uygulaması = npm (indirme aracı)
+Uygulama = express, ejs gibi kütüphaneler
+Telefon = Node.js (çalışma ortamı) */
+
+/*Kullanıcı /yokboylesayfa yazar
+→ Express genel route karşılar (index.js)
+→ res.render('pagini/yokboylesayfa') dener
+→ EJS dosyayı arar, bulamaz
+→ callback'e "Failed to lookup view" hatası gelir
+→ index.js afisareEroare(res, 404) çağırır
+→ afisareEroare obGlobal.obErori'den 404 verisini alır
+→ res.render('pagini/eroare', {titlu, text, imagine}) çağırır
+→ EJS eroare.ejs'i render eder
+→ HTML tarayıcıya gönderilir */
