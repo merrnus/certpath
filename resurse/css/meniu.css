@@ -118,12 +118,15 @@ header nav > ul > li:hover > ul {
     border-radius: 3px;
   }
   header nav > ul {
-    display: none;
+    display: flex;
     flex-direction: column;
     width: 100%;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
   }
   header nav > ul.activ {
-    display: flex;
+    max-height: 500px;
   }
   header nav > ul > li > ul {
     position: static;
@@ -140,6 +143,60 @@ header nav > ul > li:hover > ul {
   header nav > ul > li > a {
     justify-content: flex-start;
     padding-left: 24px;
+    clip-path: polygon(0 0, 85% 0, 100% 50%, 85% 100%, 0 100%);
+  }
+  header nav > ul > li {
+    opacity: 0;
+    transform: translateX(-120%);
+    transition: transform 0.4s ease, opacity 0.4s ease;
+  }
+  header nav > ul.activ > li {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  header nav > ul.activ > li:nth-child(1) {
+    transition-delay: 0ms;
+  }
+  header nav > ul.activ > li:nth-child(2) {
+    transition-delay: 100ms;
+  }
+  header nav > ul.activ > li:nth-child(3) {
+    transition-delay: 200ms;
+  }
+  header nav > ul.activ > li:nth-child(4) {
+    transition-delay: 300ms;
+  }
+  header nav > ul.activ > li:nth-child(5) {
+    transition-delay: 400ms;
+  }
+  @keyframes animatie-bara {
+    0% {
+      background-color: #ffffff;
+      transform: scaleX(1);
+      opacity: 1;
+    }
+    50% {
+      background-color: #52719c;
+      transform: scaleX(0.5);
+      opacity: 0.5;
+    }
+    100% {
+      background-color: #abbfdb;
+      transform: scaleX(1);
+      opacity: 0.8;
+    }
+  }
+  .hamburger span {
+    animation: animatie-bara 0.6s ease forwards;
+  }
+  .hamburger span:nth-child(1) {
+    animation-delay: 0ms;
+  }
+  .hamburger span:nth-child(2) {
+    animation-delay: 300ms;
+  }
+  .hamburger span:nth-child(3) {
+    animation-delay: 600ms;
   }
 }
 

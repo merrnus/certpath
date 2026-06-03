@@ -1,29 +1,39 @@
 <!DOCTYPE html>
 <html lang="ro">
+
 <head>
     <%- include('../fragmente/head') %>
 </head>
+
 <body>
     <%- include('../fragmente/header') %>
 
-    <main>
-        <div class="zona1">
-            <hgroup>
-                <h2><i class="fa-solid fa-envelope icon-static"></i> Contact</h2>
-                <p>Ia legătura cu echipa CertPath</p>
-            </hgroup>
+        <main>
+            <div class="zona1">
+                <hgroup>
+                    <h2><i class="fa-solid fa-envelope icon-static"></i> Contact</h2>
+                    <p>Ia legătura cu echipa CertPath</p>
+                </hgroup>
 
-            <address>
-                <p><i class="fa-solid fa-phone"></i> <a href="tel:+40712345678">+40 712 345 678</a></p>
-                <p><i class="fa-solid fa-envelope"></i> <a href="mailto:contact@certpath.ro">contact@certpath.ro</a></p>
-                <p><i class="fa-solid fa-location-dot"></i> București, România</p>
-            </address>
+                <address>
+                    <p><i class="fa-solid fa-phone"></i> <a href="tel:+40712345678">+40 712 345 678</a></p>
+                    <p><i class="fa-solid fa-envelope"></i> <a href="mailto:contact@certpath.ro">contact@certpath.ro</a>
+                    </p>
+                    <p><i class="fa-solid fa-location-dot"></i> București, România</p>
+                </address>
 
-            <h3>Trimite un mesaj</h3>
-            <p>Pentru întrebări despre cursuri sau certificări, ne poți contacta prin email sau telefon.</p>
-        </div>
-    </main>
+                <!-- BONUS Etapa 1: Iframe cu locatia pe Google Maps -->
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d91249.93263399383!2d26.012681!3d44.439663!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40b1ff4770adb5b7%3A0x58147f39579fe6fa!2sBucure%C8%99ti!5e0!3m2!1sro!2sro!4f13.1"
+                    width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy">
+                </iframe>
 
-    <%- include('../fragmente/footer') %>
+                <h3>Trimite un mesaj</h3>
+                <p>Pentru întrebări despre cursuri sau certificări, ne poți contacta prin email sau telefon.</p>
+            </div>
+        </main>
+
+        <%- include('../fragmente/footer') %>
 </body>
+
 </html>

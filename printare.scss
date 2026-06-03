@@ -1,0 +1,127 @@
+/* ============================================================
+   EKRANDA GÖRÜNMEZ, SADECE YAZDIRIRKEN (CTRL+P) AKTİF OLUR
+   Amaç: Web sayfasını kağıda düzgün basmak
+   ============================================================ */
+@media print {
+
+    /* ============================================================
+       BÖLÜM 1: BANNER - Sayfanın üstünde ortalanmış uyarı yazısı
+       Yazdırırken her sayfanın üstünde görünür
+       ============================================================ */
+    #banner {
+        display: block;                    /* Görünür yap */
+        position: fixed;                   /* Her sayfada sabit kalsın */
+        top: 0;                            /* En üstte */
+        left: 10%;                         /* Soldan %10 boşluk */
+        width: 80%;                        /* %80 genişlik = ortalanmış */
+        text-align: center;                /* Yazıyı ortala */
+        border: 2px dotted black;          /* Noktalı siyah çerçeve */
+        padding: 8px;                      /* İç boşluk */
+    }
+
+    /* ============================================================
+       BÖLÜM 2: GEREKSİZ ELEMENTLERİ GİZLE
+       Resim, video, menü, hamburger, yukarı çık butonu...
+       Bunlar kağıtta işe yaramaz, mürekkep israfı
+       ============================================================ */
+    img, video, iframe, figure, figcaption, #link-top, nav, .hamburger {
+        display: none !important;  /* !important: ekrandaki display'leri ez */
+    }
+
+    /* ============================================================
+       BÖLÜM 3: GRID LAYOUT'U İPTAL ET
+       Ekrandaki 3 sütunlu grid düzeni yerine düz blok akış
+       Kağıt dikey, grid yatay sığmaz
+       ============================================================ */
+    main {
+        display: block !important;   /* Grid'i kapat, normal blok yap */
+        margin: 0 !important;        /* Kenar boşluklarını sıfırla */
+        padding: 0 !important;       /* İç boşlukları sıfırla */
+    }
+
+    /* ============================================================
+       BÖLÜM 4: LİNKLERİ SADELEŞTİR
+       Renkli ve altı çizili linkler kağıtta gereksiz
+       ============================================================ */
+    a {
+        color: black !important;           /* Tüm linkler siyah */
+        text-decoration: none !important;  /* Alt çizgi yok */
+    }
+
+    /* ============================================================
+       BÖLÜM 5: HEADER DÜZENİ
+       Başlık sayfanın TAM ORTASINDA, altı çizili, büyük
+       Menü tamamen gizli
+       Header'dan sonra SAYFA ATLA (footer ayrı sayfada)
+       ============================================================ */
+    header h1 {
+        position: fixed;                      /* Sabit */
+        top: 50%;                             /* Dikey orta */
+        left: 50%;                            /* Yatay orta */
+        transform: translate(-50%, -50%);     /* Tam merkezleme */
+        text-align: center;                   /* Yazı ortada */
+        text-decoration: underline;           /* Altı çizili */
+        font-size: 2.5em;                     /* Büyük yazı */
+    }
+
+    header nav {
+        display: none !important;  /* Menüyü tamamen gizle */
+    }
+
+    header {
+        break-after: page;         /* Header'dan SONRA sayfa atla */
+        page-break-after: always;  /* Eski tarayıcılar için yedek */
+    }
+
+    /* ============================================================
+       BÖLÜM 5 DEVAM: FOOTER'DAN ÖNCE SAYFA ATLA
+       Footer her zaman yeni sayfanın başında
+       ============================================================ */
+    footer {
+        break-before: page;         /* Footer'dan ÖNCE sayfa atla */
+        page-break-before: always;  /* Eski tarayıcılar için yedek */
+    }
+
+    /* ============================================================
+       BÖLÜM 6: WATERMARK (FİLİGRAN)
+       Her sayfanın sağ alt köşesinde çapraz isim
+       ============================================================ */
+    body::after {
+        content: 'Atamuradov Muhammet';  /* Su metni - sizin isim */
+        position: fixed;                 /* Her sayfada sabit */
+        bottom: 1cm;                     /* Alttan 1cm */
+        right: 1cm;                      /* Sağdan 1cm */
+        width: 100px;                    /* 100px genişlik */
+        height: 2cm;                     /* 2cm yükseklik */
+        border: 3px double black;        /* Çift çizgili siyah çerçeve */
+        opacity: 0.65;                   /* %65 opak (soluk) */
+        display: flex;                   /* İçindeki yazıyı hizalamak için */
+        align-items: center;             /* Dikey ortala */
+        justify-content: center;         /* Yatay ortala */
+        font-weight: bold;               /* Kalın yazı */
+        transform: rotate(-15deg);       /* 15 derece sola yatık */
+    }
+
+    /* ============================================================
+       BÖLÜM 7: SAYFA BOYUTU VE MARGIN AYARLARI
+       A4 kağıt, kitap gibi sol-sağ farklı margin
+       ============================================================ */
+    
+    /* 7.1: Tüm sayfalar için temel ayar */
+    @page {
+        size: A4;        /* A4 kağıt boyutu (210mm × 297mm) */
+        margin: 1cm;     /* Tüm kenarlarda 1cm boşluk */
+    }
+
+    /* 7.2: SOL SAYFALAR (kitap açılınca soldaki sayfa) */
+    @page :left {
+        margin-left: 2.5cm;    /* Cilt payı için GENİŞ sol margin */
+        margin-right: 0.5cm;   /* DAR sağ margin */
+    }
+
+    /* 7.3: SAĞ SAYFALAR (kitap açılınca sağdaki sayfa) */
+    @page :right {
+        margin-left: 0.5cm;    /* DAR sol margin */
+        margin-right: 2.5cm;   /* Cilt payı için GENİŞ sağ margin */
+    }
+}

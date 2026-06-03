@@ -139,6 +139,32 @@ main {
     padding: var(--padding-zona);
 }
 
+/* BONUS Etapa 2: Stilizarea formulei MathML */
+math {
+    font-size: 1.3em;
+    color: var(--culoare-primara);
+}
+
+math mi {
+    color: var(--culoare-secundara);
+    font-style: italic;
+}
+
+math mn {
+    color: var(--culoare-accent);
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+math mo {
+    color: var(--culoare-primara);
+    font-size: 1.1em;
+}
+
+math mfrac {
+    color: var(--culoare-secundara);
+}
+
 /* 
    Etapa 2 - Task: design-rudimentar
    Elemente media - latime procentuala

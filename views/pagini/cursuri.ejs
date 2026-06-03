@@ -1,46 +1,74 @@
 <!DOCTYPE html>
 <html lang="ro">
+
 <head>
     <%- include('../fragmente/head') %>
 </head>
+
 <body>
     <%- include('../fragmente/header') %>
 
-    <main>
-        <div class="zona1">
-            <hgroup>
-                <h2><i class="fa-solid fa-book icon-static"></i> Cursuri disponibile</h2>
-                <p>Toate cursurile pentru certificări IT</p>
-            </hgroup>
+        <main>
+            <div class="zona1">
+                <hgroup>
+                    <h2><i class="fa-solid fa-book icon-static"></i> Cursuri disponibile</h2>
+                    <p>Toate cursurile pentru certificări IT</p>
+                </hgroup>
 
-            <div id="retelistica">
-                <h3>Rețelistică</h3>
-                <p>Cursuri pentru certificări în domeniul rețelelor de calculatoare.</p>
-                <ul>
-                    <li><b>CCNA 200-301</b> — 120 ore — 299 lei</li>
-                    <li><b>CCNP Enterprise</b> — 200 ore — 499 lei</li>
-                </ul>
+                <div id="retelistica">
+                    <h3>Rețelistică</h3>
+                    <p>Cursuri pentru certificări în domeniul rețelelor de calculatoare.</p>
+                    <ul>
+                        <li><b>CCNA 200-301</b> — 120 ore — 299 lei</li>
+                        <li><b>CCNP Enterprise</b> — 200 ore — 499 lei</li>
+                    </ul>
+                </div>
+
+                <div id="securitate">
+                    <h3>Securitate cibernetică</h3>
+                    <p>Cursuri pentru certificări în domeniul securității informatice.</p>
+                    <ul>
+                        <li><b>CompTIA Security+</b> — 80 ore — 249 lei</li>
+                        <li><b>CEH</b> — 150 ore — 399 lei</li>
+                    </ul>
+                </div>
+
+                <div id="sisteme">
+                    <h3>Sisteme</h3>
+                    <p>Cursuri pentru administrarea sistemelor de operare.</p>
+                    <ul>
+                        <li><b>Linux pentru administratori</b> — 60 ore — 199 lei</li>
+                    </ul>
+                </div>
             </div>
 
-            <div id="securitate">
-                <h3>Securitate cibernetică</h3>
-                <p>Cursuri pentru certificări în domeniul securității informatice.</p>
-                <ul>
-                    <li><b>CompTIA Security+</b> — 80 ore — 249 lei</li>
-                    <li><b>CEH</b> — 150 ore — 399 lei</li>
-                </ul>
+            <!-- BONUS Etapa 1: Formula MathML - scorul de promovare -->
+            <div class="formula-container">
+                <h3>Formula de calcul a scorului</h3>
+                <math xmlns="http://www.w3.org/1998/Math/MathML">
+                    <mrow>
+                        <mi>Scor</mi>
+                        <mo>=</mo>
+                        <mfrac>
+                            <mrow>
+                                <mi>Răspunsuri</mi>
+                                <mo>&#x00B7;</mo>
+                                <mi>corecte</mi>
+                            </mrow>
+                            <mrow>
+                                <mi>Total</mi>
+                                <mo>&#x00B7;</mo>
+                                <mi>întrebări</mi>
+                            </mrow>
+                        </mfrac>
+                        <mo>&#x00D7;</mo>
+                        <mn>100</mn>
+                    </mrow>
+                </math>
             </div>
+        </main>
 
-            <div id="sisteme">
-                <h3>Sisteme</h3>
-                <p>Cursuri pentru administrarea sistemelor de operare.</p>
-                <ul>
-                    <li><b>Linux pentru administratori</b> — 60 ore — 199 lei</li>
-                </ul>
-            </div>
-        </div>
-    </main>
-
-    <%- include('../fragmente/footer') %>
+        <%- include('../fragmente/footer') %>
 </body>
+
 </html>

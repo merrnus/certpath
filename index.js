@@ -24,6 +24,96 @@ const obGlobal = {
     obErori: null
 };
 
+// BONUS Etapa 4: Verificarea datelor din erori.json
+function verificaErori() {
+    // 1. Verificam daca exista fisierul erori.json
+    const caleJson = path.join(__dirname, 'erori.json');
+    if (!fs.existsSync(caleJson)) {
+        console.error('EROARE: Fisierul erori.json nu exista. Aplicatia se inchide.');
+        process.exit(1);
+    }
+
+    // Citim continutul fisierului ca string
+    const continut = fs.readFileSync(caleJson, 'utf8');
+
+    // 6. Verificam daca o proprietate apare de mai multe ori in acelasi obiect
+const obiecte = continut.match(/\{[^{}]*\}/g) || [];
+for (const obiect of obiecte) {
+    const proprietatiObiect = {};
+    const liniiObiect = obiect.split('\n');
+    for (const linie of liniiObiect) {
+        const match = linie.match(/"(\w+)"\s*:/);
+        if (match) {
+            const prop = match[1];
+            if (proprietatiObiect[prop]) {
+                console.error(`EROARE: Proprietatea "${prop}" apare de mai multe ori in acelasi obiect.`);
+            } else {
+                proprietatiObiect[prop] = true;
+            }
+        }
+    }
+}
+
+    const dateErori = JSON.parse(continut);
+
+    // 2. Verificam daca exista proprietatile principale
+if (!dateErori.info_erori) {
+    console.error('EROARE: Proprietatea "info_erori" lipseste din erori.json.');
+    process.exit(1);
+}
+if (!dateErori.cale_baza) {
+    console.error('EROARE: Proprietatea "cale_baza" lipseste din erori.json.');
+    process.exit(1);
+}
+if (!dateErori.eroare_default) {
+    console.error('EROARE: Proprietatea "eroare_default" lipseste din erori.json.');
+    process.exit(1);
+}
+
+    // 3. Verificam proprietatile din eroare_default
+    if (dateErori.eroare_default) {
+        if (!dateErori.eroare_default.titlu) {
+            console.error('EROARE: "eroare_default" nu are proprietatea "titlu".');
+        }
+        if (!dateErori.eroare_default.text) {
+            console.error('EROARE: "eroare_default" nu are proprietatea "text".');
+        }
+        if (!dateErori.eroare_default.imagine) {
+            console.error('EROARE: "eroare_default" nu are proprietatea "imagine".');
+        }
+    }
+
+    // 4. Verificam daca exista folderul specificat in cale_baza
+    if (dateErori.cale_baza) {
+        const caleBaza = path.join(__dirname, dateErori.cale_baza);
+        if (!fs.existsSync(caleBaza)) {
+            console.error(`EROARE: Folderul "${dateErori.cale_baza}" specificat in cale_baza nu exista.`);
+        }
+    }
+
+    // 5. Verificam daca exista fisierele imagine asociate erorilor
+    if (dateErori.info_erori && dateErori.cale_baza) {
+        for (const eroare of dateErori.info_erori) {
+            const caleImagine = path.join(__dirname, dateErori.cale_baza, eroare.imagine);
+            if (!fs.existsSync(caleImagine)) {
+                console.error(`EROARE: Imaginea "${eroare.imagine}" pentru eroarea ${eroare.identificator} nu exista in "${dateErori.cale_baza}".`);
+            }
+        }
+    }
+
+    // 7. Verificam daca exista mai multi identificatori identici
+    if (dateErori.info_erori) {
+        const identificatori = {};
+        for (const eroare of dateErori.info_erori) {
+            if (identificatori[eroare.identificator]) {
+                console.error(`EROARE: Identificatorul "${eroare.identificator}" apare de mai multe ori. Proprietati: titlu="${eroare.titlu}", text="${eroare.text}", imagine="${eroare.imagine}".`);
+            } else {
+                identificatori[eroare.identificator] = true;
+            }
+        }
+    }
+}
+
 // Task 4.20: Crearea folderelor necesare aplicației
 const vect_foldere = ['temp', 'logs', 'backup', 'fisiere_uploadate'];
 for (const folder of vect_foldere) {
@@ -77,6 +167,10 @@ app.get('/favicon.ico', (req, res) => {
     res.sendFile(path.join(__dirname, 'resurse', 'ico', 'favicon.ico'));
 });
 
+app.get('/test-eroare', (req, res) => {
+    afisareEroare(res, 500);
+});  
+
 // Task 4.16: Returnarea erorii 403 la accesarea unui folder din /resurse
 //error folder resurse
 app.use('/resurse', (req, res, next) => {
@@ -98,6 +192,7 @@ app.get(['/', '/index', '/home'], (req, res) => {
     res.render('pagini/index', { ip: req.ip });
 });
 
+
 // Task 4.9: Route general pentru orice pagină - trebuie să fie ultimul
 //general
 app.get('/*', (req, res) => {
@@ -115,6 +210,10 @@ app.get('/*', (req, res) => {
         }
     });
 });
+
+
+verificaErori();
+initErori();
 
 // Task 4.1: Serverul ascultă pe portul 8080
 app.listen(8080, () => {

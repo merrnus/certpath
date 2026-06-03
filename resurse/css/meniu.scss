@@ -6,6 +6,7 @@ $culoare-meniu-hover: #52719c;
 $culoare-submeniu-bg: #f4f7fa;
 $culoare-submeniu-text: #1a365d;
 $tranzitie: 0.3s ease;
+$culoare-accent-hamburger: #abbfdb;
 
 // @extend pentru stiluri comune
 %link-comun {
@@ -39,7 +40,6 @@ header nav {
                 position: relative;
                 overflow: hidden;
 
-                // Etapa 3 - hover efect ::before
                 &::before {
                     content: '';
                     position: absolute;
@@ -65,7 +65,6 @@ header nav {
                 }
             }
 
-            // Etapa 3 - submeniu gizli
             > ul {
                 display: none;
                 position: absolute;
@@ -89,7 +88,6 @@ header nav {
                         padding: 12px 16px;
                         position: relative;
 
-                        // Etapa 3 - subliniere dubla hover
                         &::after {
                             content: '';
                             position: absolute;
@@ -109,7 +107,6 @@ header nav {
                 }
             }
 
-            // Etapa 3 - submeniu deschis la hover
             &:hover > ul {
                 display: flex;
                 transform: scale(1);
@@ -156,12 +153,15 @@ header nav {
     }
 
     header nav > ul {
-        display: none;
+        display: flex;
         flex-direction: column;
         width: 100%;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease;
 
         &.activ {
-            display: flex;
+            max-height: 500px;
         }
 
         > li > ul {
@@ -183,5 +183,54 @@ header nav {
     header nav > ul > li > a {
         justify-content: flex-start;
         padding-left: 24px;
+        clip-path: polygon(0 0, 85% 0, 100% 50%, 85% 100%, 0 100%);
+    }
+
+    // Bonus Etapa 3: Animatie intrare meniu la click pe hamburger
+    header nav > ul > li {
+        opacity: 0;
+        transform: translateX(-120%);
+        transition: transform 0.4s ease, opacity 0.4s ease;
+    }
+
+    header nav > ul.activ > li {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    @for $i from 1 through 5 {
+        header nav > ul.activ > li:nth-child(#{$i}) {
+            transition-delay: #{($i - 1) * 100}ms;
+        }
+    }
+
+    // Bonus Etapa 3: Animatie hamburger la aparitia pe ecran mic
+    @keyframes animatie-bara {
+        0% {
+            background-color: #ffffff;
+            transform: scaleX(1);
+            opacity: 1;
+        }
+        50% {
+            background-color: $culoare-meniu-hover;
+            transform: scaleX(0.5);
+            opacity: 0.5;
+        }
+        100% {
+            background-color: $culoare-accent-hamburger;
+            transform: scaleX(1);
+            opacity: 0.8;
+        }
+    }
+
+    // Bonus Etapa 3: Delay succesiv pentru fiecare bara cu for loop SASS
+    .hamburger span {
+        animation: animatie-bara 0.6s ease forwards;
+    }
+
+    @for $i from 1 through 3 {
+        .hamburger span:nth-child(#{$i}) {
+            animation-delay: #{($i - 1) * 300}ms;
+        }
     }
 }

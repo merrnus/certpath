@@ -1,0 +1,311 @@
+// ============================================================
+// BÖLÜM 1: SASS DEĞİŞKENLERİ
+// Proje genelinde kullanılacak renk ve geçiş değerleri
+// CSS'teki :root değişkenlerinin SASS versiyonu (daha kısa)
+// ============================================================
+$culoare-meniu-bg: #1a365d;              // Menü arka planı - koyu lacivert
+$culoare-meniu-text: #ffffff;            // Menü yazı rengi - beyaz
+$culoare-meniu-hover: #52719c;           // Hover efekti rengi - orta mavi
+$culoare-submeniu-bg: #f4f7fa;           // Alt menü arka planı - açık gri-mavi
+$culoare-submeniu-text: #1a365d;         // Alt menü yazı rengi - koyu lacivert
+$tranzitie: 0.3s ease;                  // Tüm geçiş efektleri için ortak süre
+$culoare-accent-hamburger: #abbfdb;      // Hamburger animasyonunda kullanılan açık mavi
+
+// ============================================================
+// BÖLÜM 2: %link-comun - ORTAK STİL KALIBI
+// @extend ile çağrıldığında bu stiller otomatik kopyalanır
+// Kendi başına CSS'e çıkmaz, sadece extend edildiğinde görünür
+// ============================================================
+%link-comun {
+    display: block;              // Blok element gibi davran (tüm satırı kapla)
+    text-decoration: none;       // Alt çizgiyi kaldır
+    transition: all $tranzitie;  // Tüm değişimler 0.3 saniyede yumuşak olsun
+}
+
+// ============================================================
+// BÖLÜM 3: BÜYÜK EKRAN MENÜ (MASAÜSTÜ - 1025px ve üstü)
+// Yatay menü + hover'da açılan alt menüler
+// ============================================================
+header nav {
+    background-color: $culoare-meniu-bg;  // Menü arka planı koyu lacivert
+
+    // 3.1: ANA MENÜ LİSTESİ (1. seviye - üst menü)
+    > ul {
+        list-style: none;              // Madde işaretlerini kaldır
+        margin: 0;                     // Dış boşluk sıfırla
+        padding: 0;                    // İç boşluk sıfırla
+        display: flex;                 // Flexbox ile yan yana diz
+        flex-direction: row;           // YATAY dizilim (soldan sağa)
+        justify-content: flex-start;  // Soldan başlayarak hizala
+
+        // 3.2: ANA MENÜ ELEMANI (her bir li = bir menü öğesi)
+        > li {
+            position: relative;  // Alt menü buna göre konumlanacak (absolute'in referansı)
+
+            // 3.3: ANA MENÜ LİNKİ (Home, About, Contact gibi)
+            > a {
+                @extend %link-comun;         // Ortak link stillerini kopyala
+                display: flex;               // İkon ve yazıyı yan yana dizmek için
+                align-items: center;         // Dikey ortala
+                gap: 8px;                    // İkon ile yazı arası boşluk
+                padding: 16px 20px;          // İç boşluk (üst-alt: 16px, sağ-sol: 20px)
+                color: $culoare-meniu-text;  // Yazı rengi beyaz
+                position: relative;          // ::before için konum referansı
+                overflow: hidden;            // ::before animasyonu taşmasın
+
+                // 3.4: HOVER EFEKTİ (arka plan aşağıdan yukarı açılır)
+                &::before {
+                    content: '';                              // Boş içerik (süsleme amaçlı)
+                    position: absolute;                       // a'nın içinde serbest konumlanır
+                    top: 0;                                   // Üstten başla
+                    left: 0;                                  // Soldan başla
+                    width: 100%;                              // Tam genişlik
+                    height: 100%;                             // Tam yükseklik
+                    background-color: $culoare-meniu-hover;   // Orta mavi arka plan
+                    border: 1px solid rgba(255,255,255,0.3);  // Hafif beyaz çerçeve (%30 opak)
+                    box-shadow: inset 0 0 10px rgba(255,255,255,0.1);  // İç gölge (hafif parlama)
+                    transform: scaleY(0);                     // BAŞLANGIÇ: yükseklik 0 (düz çizgi)
+                    transition: transform $tranzitie;          // scaleY değişimi 0.3s'de yumuşak
+                    z-index: 0;                               // Yazının altında kalsın
+                }
+
+                // 3.5: Hover'da ::before tam yüksekliğe açılır
+                &:hover::before {
+                    transform: scaleY(1);  // scaleY(1) = tam yükseklik (aşağıdan yukarı açılır)
+                }
+
+                // 3.6: İkon ve yazı ::before'un ÜSTÜNDE görünsün
+                i, span {
+                    position: relative;  // z-index çalışması için position gerekli
+                    z-index: 1;          // ::before'un (z-index:0) üstünde
+                }
+            }
+
+            // 3.7: ALT MENÜ (2. seviye - dropdown)
+            > ul {
+                display: none;                 // BAŞLANGIÇTA GİZLİ
+                position: absolute;            // Üst menüye göre serbest konumlanır
+                top: 100%;                     // Üst menünün HEMEN ALTINDAN başla
+                left: 0;                       // Sola hizalı
+                background-color: $culoare-submeniu-bg;  // Açık gri arka plan
+                min-width: 200px;              // En az 200px genişlik
+                list-style: none;              // Madde işaretlerini kaldır
+                padding: 0;                    // İç boşluk sıfırla
+                margin: 0;                     // Dış boşluk sıfırla
+                flex-direction: column;        // Alt menü elemanları DİKEY dizilsin
+                transform: scale(0);           // BAŞLANGIÇ: 0 boyut (görünmez)
+                transform-origin: top left;    // Animasyon sol üst köşeden başlasın
+                transition: transform $tranzitie;  // scale değişimi yumuşak
+                z-index: 100;                  // Diğer elementlerin üstünde
+
+                // 3.8: ALT MENÜ LİNKİ
+                li {
+                    a {
+                        @extend %link-comun;              // Ortak link stillerini kopyala
+                        color: $culoare-submeniu-text;   // Koyu lacivert yazı
+                        padding: 12px 16px;               // İç boşluk
+                        position: relative;               // ::after için referans
+
+                        // 3.9: ALT MENÜ HOVER EFEKTİ (çift alt çizgi)
+                        &::after {
+                            content: '';                          // Boş içerik
+                            position: absolute;                   // a'nın içinde konumlanır
+                            bottom: 4px;                          // Alttan 4px yukarıda
+                            left: 16px;                           // Soldan 16px içeride
+                            width: 0;                             // BAŞLANGIÇ: çizgi yok
+                            height: 4px;                          // 4px kalınlık
+                            background-color: $culoare-meniu-hover;  // Orta mavi üst çizgi
+                            border-bottom: 3px solid $culoare-meniu-bg;  // Koyu lacivert alt çizgi
+                            transition: width $tranzitie;         // Genişlik değişimi yumuşak
+                        }
+
+                        // 3.10: Hover'da çift çizgi soldan sağa uzanır
+                        &:hover::after {
+                            width: calc(100% - 32px);  // Tam genişlik - 32px (16px sol + 16px sağ)
+                        }
+                    }
+                }
+            }
+
+            // 3.11: ÜST MENÜYE HOVER → ALT MENÜ AÇILIR
+            &:hover > ul {
+                display: flex;        // Görünür yap
+                transform: scale(1);  // Tam boyuta büyü (sol üstten dışa doğru)
+            }
+        }
+    }
+}
+
+// ============================================================
+// BÖLÜM 4: HAMBURGER BUTONU - BÜYÜK EKRANDA GİZLİ
+// Masaüstünde hamburger menüye gerek yok, menü zaten açık
+// ============================================================
+.hamburger {
+    display: none;  // Tamamen gizle, yer kaplamasın
+}
+
+// ============================================================
+// BÖLÜM 5: ORTA EKRAN (TABLET) - 481px ile 1024px arası
+// Menü hala yatay ama SADECE İKONLAR gösterilir
+// ============================================================
+@media screen and (max-width: 1024px) and (min-width: 481px) {
+    header nav {
+        > ul > li > a {
+            span {
+                display: none;      // Yazıları GİZLE (sadece ikon kalır)
+            }
+            padding: 16px 12px;    // Sağ-sol padding'i azalt (ikonlar daha küçük alan kaplar)
+        }
+    }
+}
+
+// ============================================================
+// BÖLÜM 6: KÜÇÜK EKRAN (MOBİL) - 480px ve altı
+// Hamburger menü görünür, dikey açılır menü
+// ============================================================
+@media screen and (max-width: 480px) {
+    
+    // 6.1: HAMBURGER BUTONU - MOBİLDE GÖRÜNÜR
+    .hamburger {
+        display: flex;             // Flexbox ile görünür yap
+        flex-direction: column;    // 3 çizgi alt alta
+        gap: 5px;                  // Çizgiler arası 5px boşluk
+        cursor: pointer;           // Fare imleci el olsun (tıklanabilir)
+        padding: 16px;             // Tıklama alanı için iç boşluk
+        background: none;          // Arka plan yok
+        border: none;              // Kenarlık yok
+
+        // 6.2: HAMBURGER ÇİZGİLERİ (3 adet span)
+        span {
+            display: block;               // Blok element (her biri ayrı satır)
+            width: 25px;                  // Çizgi genişliği
+            height: 3px;                  // Çizgi kalınlığı
+            background-color: #ffffff;    // Beyaz çizgi
+            border-radius: 3px;           // Hafif yuvarlak köşe
+        }
+    }
+
+    // 6.3: MOBİL ANA MENÜ
+    header nav > ul {
+        display: flex;             // Flexbox
+        flex-direction: column;    // DİKEY dizilim (alt alta)
+        width: 100%;               // Tam genişlik
+        max-height: 0;             // BAŞLANGIÇ: yükseklik 0 (KAPALI)
+        overflow: hidden;          // Taşanı gizle (menü kapalıyken içerik görünmesin)
+        transition: max-height 0.4s ease;  // Açılma/kapanma yumuşak
+
+        // 6.4: MENÜ AÇIKKEN (JavaScript ile "activ" class'ı eklenir)
+        &.activ {
+            max-height: 500px;  // Yeterince büyük yükseklik (içerik kadar açılır)
+        }
+
+        // 6.5: MOBİL ALT MENÜ
+        > li > ul {
+            position: static;   // Normal akışta (absolute değil, üst menüye yapışık değil)
+            transform: none;    // scale animasyonu yok (mobilde farklı açılır)
+            display: none;      // BAŞLANGIÇTA GİZLİ
+
+            // 6.6: Alt menü açıkken
+            &.activ {
+                display: flex;            // Görünür yap
+                flex-direction: column;   // Dikey dizilim
+            }
+        }
+    }
+
+    // 6.7: İlk menü elemanının yazısını gizle (opsiyonel - genelde logo)
+    header nav > ul > li:first-child a span {
+        display: none;
+    }
+
+    // 6.8: MOBİL MENÜ LİNK STİLİ (ok ucu şeklinde)
+    header nav > ul > li > a {
+        justify-content: flex-start;  // Soldan başla
+        padding-left: 24px;           // Soldan iç boşluk
+        
+        // clip-path: ok ucu şekli (sağ taraf üçgen gibi)
+        // polygon(üst-sol, üst-sağ-%85, sağ-orta, alt-sağ-%85, alt-sol)
+        clip-path: polygon(0 0, 85% 0, 100% 50%, 85% 100%, 0 100%);
+    }
+
+    // ============================================================
+    // BONUS: MENÜ AÇILMA ANİMASYONU
+    // Her menü elemanı soldan kayarak gelir, sırayla görünür
+    // ============================================================
+    
+    // 6.9: Menü elemanları başlangıçta gizli ve solda
+    header nav > ul > li {
+        opacity: 0;                        // Tamamen saydam
+        transform: translateX(-120%);      // Sola taşmış (ekran dışında)
+        transition: transform 0.4s ease, opacity 0.4s ease;  // Yumuşak geçiş
+    }
+
+    // 6.10: Menü açılınca elemanlar görünür ve yerine gelir
+    header nav > ul.activ > li {
+        opacity: 1;                  // Tam görünür
+        transform: translateX(0);    // Normal pozisyonuna gel
+    }
+
+    // 6.11: SASS FOR DÖNGÜSÜ - Her eleman sırayla gelsin
+    // 1. eleman hemen, 2. eleman 100ms sonra, 3. eleman 200ms sonra...
+    @for $i from 1 through 5 {
+        header nav > ul.activ > li:nth-child(#{$i}) {
+            transition-delay: #{($i - 1) * 100}ms;
+            // $i=1 → 0ms, $i=2 → 100ms, $i=3 → 200ms, $i=4 → 300ms, $i=5 → 400ms
+        }
+    }
+
+    // ============================================================
+    // BONUS: HAMBURGER ÇİZGİLERİ ANİMASYONU
+    // Hamburger butonu göründüğünde çizgiler sırayla renk değiştirir
+    // ============================================================
+    
+    // 6.12: Animasyon tanımı
+    @keyframes animatie-bara {
+        0% {
+            background-color: #ffffff;           // Başlangıç: beyaz
+            transform: scaleX(1);                // Normal genişlik
+            opacity: 1;                          // Tam opak
+        }
+        50% {
+            background-color: $culoare-meniu-hover;  // Orta: orta mavi
+            transform: scaleX(0.5);                  // Yarı genişlik
+            opacity: 0.5;                            // Yarı saydam
+        }
+        100% {
+            background-color: $culoare-accent-hamburger;  // Son: açık mavi
+            transform: scaleX(1);                         // Normal genişlik
+            opacity: 0.8;                                 // %80 opak
+        }
+    }
+
+    // 6.13: Tüm hamburger çizgilerine animasyonu uygula
+    .hamburger span {
+        animation: animatie-bara 0.6s ease forwards;
+        // forwards: animasyon bitince son durumda kal (açık mavi, %80 opak)
+    }
+
+    // 6.14: SASS FOR DÖNGÜSÜ - Her çizgi sırayla hareket etsin
+    // 1. çizgi hemen, 2. çizgi 300ms sonra, 3. çizgi 600ms sonra
+    @for $i from 1 through 3 {
+        .hamburger span:nth-child(#{$i}) {
+            animation-delay: #{($i - 1) * 300}ms;
+            // $i=1 → 0ms, $i=2 → 300ms, $i=3 → 600ms
+        }
+    }
+}
+
+┌─────────────────────────────────────────────────────────────┐
+│ SCSS → CSS Derleyici → Tarayıcının Anladığı CSS             │
+│                                                              │
+│ DEĞİŞKENLER: $degisken = değer (CSS'teki --degisken gibi)  │
+│ EXTEND:     %kalip + @extend (kod tekrarını önler)          │
+│ NESTING:    İç içe yazım (düzenli kod)                      │
+│ FOR:        @for $i from 1 through 5 (döngü ile çoklu kod) │
+│ & :         Üst seçiciyi temsil eder (a > &:hover = a:hover)│
+│                                                              │
+│ 3 EKRAN BOYUTU:                                             │
+│ MASAÜSTÜ: Yatay menü + hover alt menü + yazılar görünür    │
+│ TABLET:   Yatay menü + SADECE İKONLAR                       │
+│ MOBİL:    Hamburger + dikey menü + sıralı animasyon         │
+└─────────────────────────────────────────────────────────────┘
